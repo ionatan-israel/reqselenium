@@ -7,11 +7,11 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
-requestium = "*"
 selenium = "*"
 requests = "*"
 parsel = "*"
 tldextract = "*"
+random-useragent = "*"
 
 [requires]
 python_version = "3.7"

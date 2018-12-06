@@ -21,8 +21,7 @@ class DriverMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self.default_timeout = kwargs['default_timeout']
-        del kwargs['default_timeout']
+        self.default_timeout = kwargs['timeout']
         del kwargs['desired_capabilities']
         super(DriverMixin, self).__init__(*args, **kwargs)
 
@@ -61,7 +60,7 @@ class DriverMixin(object):
             self.get('http://' + cookie_domain)
 
         # Fixes phantomjs bug, all domains must start with a period
-        if self.name == "phantomjs": cookie['domain'] = '.' + cookie['domain']
+        # if self.name == "phantomjs": cookie['domain'] = '.' + cookie['domain']
         self.add_cookie(cookie)
 
         # If we fail adding the cookie, retry with a more permissive domain
