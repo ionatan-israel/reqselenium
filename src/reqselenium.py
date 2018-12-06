@@ -1,3 +1,4 @@
+import os
 from typing import Union
 
 import requests
@@ -55,7 +56,8 @@ class Session(requests.Session):
         return ReqSeleniumChrome(timeout=self.default_timeout, desired_capabilities=self.desired_capabilities)
 
     def _start_geckodriver(self) -> webdriver.Firefox:
-        profile = webdriver.FirefoxProfile()
+        profile_directory = os.path.normpath(os.path.join(os.getcwd(), 'profile'))
+        profile = webdriver.FirefoxProfile(profile_directory=profile_directory)
         profile.set_preference('general.useragent.override', self.user_agent)
         return ReqSeleniumFirefox(
             firefox_profile=profile,
